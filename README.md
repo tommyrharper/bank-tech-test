@@ -28,7 +28,7 @@ date || credit || debit || balance
 
 Objects | Messages 
 --------|--------
-Account | deposit(amount, date) <br> withdrawl(amount, date) <br> print_statement
+Account | deposit(amount, date) <br> withdraw(amount, date) <br> print_statement
 
 ### Tests
 
