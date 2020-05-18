@@ -113,6 +113,10 @@ describe Account do
     it 'does not accept a string as a parameter for withdrawl' do
       expect{ subject.withdraw("string") }.to raise_error 'Must enter a number'
     end
+
+    it 'does not accept a number with 3 d.p. as a parameter for deposit' do
+      expect{ subject.deposit(5.555) }.to raise_error 'Cannot enter more than two decimal points'
+    end
   end
 
 end
