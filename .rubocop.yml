@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+    - spec/spec_helper.rb
+    - Gemfile
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude: 
+    - spec/account_spec.rb
+
+Style/FormatString:
+  Exclude:
+    - lib/account.rb
+
+Style/FormatStringToken:
+  Exclude:
+    - lib/account.rb
