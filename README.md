@@ -125,13 +125,13 @@ date || credit || debit || balance
 > So that I don't lose money,  
 > I want users to have a credit limit.
 
-- [ ] 8
+- [x] 8
 
 > As a developer,  
 > So the code is easily readable,
 > I would like it to be linted.
 
-- [ ] 9
+- [x] 9
 
 > As a developer,  
 > So that I know all the code is working,  
@@ -303,13 +303,13 @@ Green.
 
 ## Code coverage and linting
 
-- [ ] 8
+- [x] 8
 
 > As a developer,  
 > So the code is easily readable,
 > I would like it to be linted.
 
-- [ ] 9
+- [x] 9
 
 > As a developer,  
 > So that I know all the code is working,  
@@ -352,3 +352,19 @@ Then I ran rubocop:
 ```
 rubocop
 ```
+Then I created ```.rubocop.yml``` and added the following code:
+```ruby
+AllCops:
+  Exclude:
+    - spec/spec_helper.rb
+    - Gemfile
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+```
+This threw 97 offences! of errors. That will remind me to start with rubocop nexttime. Lets to fix it up!
+
+I then fixed all the erros. Phew. That taught me a lesson. Lint from the start!
