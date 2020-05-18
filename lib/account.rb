@@ -9,8 +9,8 @@ class Account
   end
 
   def deposit(amount, date)
-    @deposits << amount
-    @dates << date
+    @deposits.unshift(amount)
+    @dates.unshift(date)
     @date = date
   end
 
@@ -22,13 +22,11 @@ class Account
   private
 
   def create_statement
-    total_entries = @dates.length
     balance_on_date = @deposits.sum
 
-    @dates.reverse.each_with_index { |date, index|
-      last_deposit = @deposits[total_entries-index-1]
-      @statement_end += "#{date} || #{last_deposit}.00 || || #{balance_on_date}.00\n"
-      balance_on_date -= @deposits[total_entries-index-1]
+    @dates.each_with_index { |date, index|
+      @statement_end += "#{date} || #{@deposits[index]}.00 || || #{balance_on_date}.00\n"
+      balance_on_date -= @deposits[index]
     }
   end
 
