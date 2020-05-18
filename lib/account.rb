@@ -8,21 +8,16 @@ class Account
     @statement_end = ""
   end
 
-  # def deposit(amount, date)
   def deposit(amount)
-    time = Time.now
-    time_refactored = time.strftime('%d/%m/%Y')
-    date = 
+    set_date
     @deposits.unshift(amount)
-    # @dates.unshift(date)
-    @dates.unshift(time_refactored)
+    @dates.unshift(@date)
   end
 
   def withdraw(amount)
-    date = Time.now
-    date_refactored = date.strftime('%d/%m/%Y')
+    set_date
     @deposits.unshift(-amount)
-    @dates.unshift(date_refactored)
+    @dates.unshift(@date)
   end
 
   def print_statement
@@ -36,13 +31,21 @@ class Account
     balance_on_date = @deposits.sum
 
     @dates.each_with_index { |date, index|
-      if @deposits[index] > 0
+      if credit?(index)
         @statement_end += "#{date} || #{'%.2f' % @deposits[index]} || || #{'%.2f' % balance_on_date}\n"
       else
         @statement_end += "#{date} || || #{'%.2f' % -@deposits[index]} || #{'%.2f' % balance_on_date}\n"
       end
       balance_on_date -= @deposits[index]
     }
+  end
+
+  def set_date
+    @date = Time.now.strftime('%d/%m/%Y')
+  end
+
+  def credit?(index)
+    @deposits[index] > 0
   end
 
 end
