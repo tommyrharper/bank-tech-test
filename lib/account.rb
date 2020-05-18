@@ -54,6 +54,12 @@ class Account
 
   def is_valid_number?(amount)
     fail 'Must enter a number' unless amount.is_a? Numeric
+    fail 'Cannot enter more than two decimal points' if more_than_two_decimal_places?(amount)
+  end
+
+  def more_than_two_decimal_places?(amount)
+    decimals = amount.to_s.split(".")[1]
+    decimals != nil && decimals.length > 2
   end
 
 end
