@@ -113,7 +113,7 @@ date || credit || debit || balance
 > So I can make exact transactions,  
 > I would like my program to be able to calculate with pennies
 
-- [ ] 6
+- [x] 6
 
 > As a banker,  
 > So that the system is reliable,  
@@ -279,6 +279,24 @@ Green.
 
 Then I refactored my code to extract two extra methods ```set_date``` and ```credit?(index)``` for readability.
 
+## Edge cases
 
+- [x] 6
 
+> As a banker,  
+> So that the system is reliable,  
+> I would like it to reject false values such as strings and numbers with more than two decimal places.
 
+First I  wrote a test where the user deposits a ```"string"```. Red.
+
+- Create a method ```is_valid_number?``` to check if deposits are numbers.
+
+Green.
+
+Then I repeated the same process for withdrawls.
+
+Then I wrote a test where the user deposits 5.555. Red
+
+- Created a method ```more_than_two_decimal_places?```. 
+
+Green.
