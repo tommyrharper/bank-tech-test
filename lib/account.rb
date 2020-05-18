@@ -58,15 +58,15 @@ class Account
     @deposits[index].positive?
   end
 
-  def valid_number?(amount)
-    raise 'Must enter a number' unless amount.is_a? Numeric
+  def valid_number?(number)
+    raise 'Must enter a number' unless number.is_a? Numeric
     raise 'Cannot enter more than two decimal points' if
-    more_than_two_decimal_places?(amount)
+    over_two_decimal_places?(number)
   end
 
-  def more_than_two_decimal_places?(amount)
+  def over_two_decimal_places?(number)
     # This counts the number of decimal places
-    decimals = amount.to_s.split('.')[1]
+    decimals = number.to_s.split('.')[1]
     !decimals.nil? && decimals.length > 2
   end
 end
