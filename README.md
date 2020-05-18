@@ -6,12 +6,16 @@ This is a small project to practice maintaining high code quality, and using a g
 
 1. Clone this repository to your local machine.
 2. Enter its root folder.
-3. Launch IRB:
+3. Install the ruby dependencies with:
+```shell
+bundle
 ```
+4. Launch IRB:
+```shell
 irb
 ```
 Once in IRB:
-```
+```shell
 > require './lib/account.rb'
 > account = Account.new
 ```
@@ -26,6 +30,42 @@ print_statement | This method will print your account statement to the console.
 You will something like this in your terminal:
 
 ![](./images/bank-tech-test-example.png)
+
+### Testing
+
+To run the tests and check everything is working run:
+```shell
+rspec
+```
+This will show you test results and code coverage like this:
+```shell
+Finished in 0.0461 seconds (files took 0.39105 seconds to load)
+11 examples, 0 failures
+
+
+COVERAGE: 100.00% -- 108/108 lines in 2 files
+```
+You can also check the linting by running:
+```shell
+rubocop
+```
+This should return:
+```shell
+2 files inspected, no offenses detected
+```
+
+## Dependencies and ruby version
+
+ - Ruby version - 2.7.0
+
+This project has no production dependencies, all the dependencies are ruby gems are for testing and development.
+
+Gem | Description
+----|----------
+rspec | This runs our unit and feature tests
+rubocop | This is a ruby code linter.
+simplecov | This tests code coverage.
+simplecov-console | This displays code coverage in the console.
 
 ## Specification
 
@@ -44,7 +84,7 @@ You will something like this in your terminal:
 **When** she prints her bank statement  
 **Then** she would see
 
-```
+```shell
 date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500.00
 13/01/2012 || 2000.00 || || 3000.00
@@ -63,7 +103,7 @@ Account | deposit(amount, date) <br> withdraw(amount, date) <br> print_statement
 ### Tests
 
 From the users perspective in irb:
-```
+```shell
 > account = Account.new
 > account.deposit(1000, "10/01/2012")
 > account.print
@@ -71,7 +111,7 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 For multiple deposits:
-```
+```shell
 > account = Account.new
 > account.deposit(1000, "10/01/2012")
 > account.deposit(1000, "13/01/2012")
@@ -140,7 +180,7 @@ date || credit || debit || balance
 ## Set up
 
 I started this project by creating an empty repository on my local machine and github. Then in the local repository, I did the following.
-```
+```shell
 touch README.md
 git init
 rspec --init
@@ -327,7 +367,7 @@ gem 'simplecov'
 gem 'simplecov-console'
 ```
 Then I ran:
-```
+```shell
 bundle install
 ```
 Then I added to the top of ```spec/spec_helper.rb```:
@@ -349,7 +389,7 @@ COVERAGE: 100.00% -- 102/102 lines in 2 files
 100% test coverage, fanatastic!
 
 Then I ran rubocop:
-```
+```shell
 rubocop
 ```
 Then I created ```.rubocop.yml``` and added the following code:
