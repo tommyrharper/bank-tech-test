@@ -32,7 +32,7 @@ class Account
       if @deposits[index] > 0
         @statement_end += "#{date} || #{'%.2f' % @deposits[index]} || || #{'%.2f' % balance_on_date}\n"
       else
-        @statement_end += "#{date} || || #{-@deposits[index]}.00 || #{balance_on_date}.00\n"
+        @statement_end += "#{date} || || #{'%.2f' % -@deposits[index]} || #{'%.2f' % balance_on_date}\n"
       end
       balance_on_date -= @deposits[index]
     }
