@@ -9,6 +9,7 @@ class Account
   end
 
   def deposit(amount)
+    is_valid_number?(amount) 
     set_date
     @deposits.unshift(amount)
     @dates.unshift(@date)
@@ -48,6 +49,10 @@ class Account
 
   def credit?(index)
     @deposits[index] > 0
+  end
+
+  def is_valid_number?(amount)
+    fail 'Must enter a number' unless amount.is_a? Numeric
   end
 
 end
