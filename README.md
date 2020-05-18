@@ -23,6 +23,10 @@ deposit(amount) |  This method allows you to deposit money into the account. Use
 withdraw(amount) | This method allows you to withdraw money from the account. Use a number with up to two decimal places as the parameter.
 print_statement | This method will print your account statement to the console.
 
+You will something like this in your terminal:
+
+![](./images/bank-tech-test-example.png)
+
 ## Specification
 
 ### Requirements
@@ -272,6 +276,8 @@ Then I refactored all the other tests. Red
 - I had to update the ```withdraw``` method to also use the new date system.
 
 Green.
+
+Then I refactored my code to extract two extra methods ```set_date``` and ```credit?(index)``` for readability.
 
 
 
