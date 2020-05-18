@@ -11,7 +11,11 @@ class Account
   def deposit(amount, date)
     @deposits.unshift(amount)
     @dates.unshift(date)
-    @date = date
+  end
+
+  def withdraw(amount, date)
+    @deposits.unshift(-amount)
+    @dates.unshift(date)
   end
 
   def print_statement
@@ -25,7 +29,11 @@ class Account
     balance_on_date = @deposits.sum
 
     @dates.each_with_index { |date, index|
-      @statement_end += "#{date} || #{@deposits[index]}.00 || || #{balance_on_date}.00\n"
+      if @deposits[index] > 0
+        @statement_end += "#{date} || #{@deposits[index]}.00 || || #{balance_on_date}.00\n"
+      else
+        @statement_end += "#{date} || || #{-@deposits[index]}.00 || #{balance_on_date}.00\n"
+      end
       balance_on_date -= @deposits[index]
     }
   end
