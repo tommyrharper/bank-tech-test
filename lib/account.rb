@@ -33,18 +33,20 @@ class Account
   def create_statement
     balance = @deposits.sum
     @dates.each_with_index do |date, index|
-      update_statment(date, balance, index)
+      add_row(date, balance, index)
       balance -= @deposits[index]
     end
   end
 
-  def update_statment(date, balance, index)
+  def add_row(date, balance, index)
+    # '%.2f' % formats numbers to 2 d.p.
     credit = '%.2f' % @deposits[index]
     debit = '%.2f' % -@deposits[index]
+    balance = '%.2f' % balance
     @statement += if credit?(index)
-                    "#{date} || #{credit} || || #{'%.2f' % balance}\n"
+                    "#{date} || #{credit} || || #{balance}\n"
                   else
-                    "#{date} || || #{debit} || #{'%.2f' % balance}\n"
+                    "#{date} || || #{debit} || #{balance}\n"
                   end
   end
 
@@ -63,6 +65,7 @@ class Account
   end
 
   def more_than_two_decimal_places?(amount)
+    # This counts the number of decimal places
     decimals = amount.to_s.split('.')[1]
     !decimals.nil? && decimals.length > 2
   end
