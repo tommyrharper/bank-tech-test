@@ -300,3 +300,55 @@ Then I wrote a test where the user deposits 5.555. Red
 - Created a method ```more_than_two_decimal_places?```. 
 
 Green.
+
+## Code coverage and linting
+
+- [ ] 8
+
+> As a developer,  
+> So the code is easily readable,
+> I would like it to be linted.
+
+- [ ] 9
+
+> As a developer,  
+> So that I know all the code is working,  
+> I would like to be able to see test coverage.
+
+I ran:
+```
+bundle init
+```
+Then I added the following gem dependencies
+```ruby
+gem 'rubocop'
+gem 'rspec'
+gem 'simplecov'
+gem 'simplecov-console'
+```
+Then I ran:
+```
+bundle install
+```
+Then I added to the top of ```spec/spec_helper.rb```:
+```ruby
+require 'simplecov'
+require 'simplecov-console'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  SimpleCov::Formatter::Console
+)
+SimpleCov.start
+```
+Then I ran:
+```
+$ rspec
+
+COVERAGE: 100.00% -- 102/102 lines in 2 files
+```
+100% test coverage, fanatastic!
+
+Then I ran rubocop:
+```
+rubocop
+```
