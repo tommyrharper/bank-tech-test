@@ -70,4 +70,13 @@ describe Account do
       "10/01/2012 || 10.55 || || 10.55\n").to_stdout
   end
 
+  it 'accepts a deposits of 10 and a withdrawl of 4.45 and prints the statement' do
+    subject.deposit(10, "10/01/2012")
+    subject.withdraw(4.45, "13/01/2012")
+    expect{ subject.print_statement }.to output(
+      "date || credit || debit || balance\n"+
+      "13/01/2012 || || 4.45 || 5.55\n"+
+      "10/01/2012 || 10.00 || || 10.00\n").to_stdout
+  end
+
 end
