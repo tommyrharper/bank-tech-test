@@ -6,6 +6,7 @@ class Account
     @balance = 0
     @dates = []
     @deposits = []
+    @statement_end = ""
   end
 
   def deposit(amount, date)
@@ -16,25 +17,18 @@ class Account
   end
 
   def print_statement
-    if @dates.length < 2
-      puts STATEMENT_HEADER +
-      "#{@date} || #{@balance}.00 || || #{@balance}.00"
-    elsif @dates.length < 3
-      puts STATEMENT_HEADER +
-            "#{@dates.pop} || #{@deposits[1]}.00 || || #{@balance}.00\n"+
-            "#{@dates.pop} || #{@deposits[0]}.00 || || #{@balance-@deposits.pop}.00\n"
-    elsif @dates.length < 4
-      puts STATEMENT_HEADER +
-            "#{@dates.pop} || #{@deposits[2]}.00 || || #{@balance}.00\n"+
-            "#{@dates.pop} || #{@deposits[1]}.00 || || #{@balance-@deposits.pop}.00\n"+
-            "#{@dates.pop} || #{@deposits[0]}.00 || || #{@balance-@deposits.pop-@deposits.pop}.00\n"
-    else
-      puts STATEMENT_HEADER +
-            "#{@dates.pop} || #{@deposits[3]}.00 || || #{@balance}.00\n"+
-            "#{@dates.pop} || #{@deposits[2]}.00 || || #{@balance-@deposits.pop}.00\n"+
-            "#{@dates.pop} || #{@deposits[1]}.00 || || #{@balance-@deposits.pop-@deposits.pop}.00\n"+
-            "#{@dates.pop} || #{@deposits[0]}.00 || || #{@balance-(@deposits.pop*3)}.00\n"
-    end
+    no_entries = @dates.length
+    balance_on_date = @balance
+
+    @dates.reverse.each_with_index { |date, index|
+      last_deposit = @deposits[no_entries-index-1]
+
+      @statement_end += "#{date} || #{last_deposit}.00 || || #{balance_on_date}.00\n"
+
+      balance_on_date -= @deposits[no_entries-index-1]
+    }
+
+    puts STATEMENT_HEADER + @statement_end
   end
 
 end
