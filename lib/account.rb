@@ -17,6 +17,7 @@ class Account
   end
 
   def withdraw(amount)
+    is_valid_number?(amount)
     set_date
     @deposits.unshift(-amount)
     @dates.unshift(@date)
