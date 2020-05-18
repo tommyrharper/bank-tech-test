@@ -405,6 +405,6 @@ Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 ```
-This threw 97 offences! of errors. That will remind me to start with rubocop nexttime. Lets to fix it up!
+This threw 97 offences! of errors. That will remind me to start with rubocop next time. Lets to fix it up!
 
-I then fixed all the erros. Phew. That taught me a lesson. Lint from the start!
+I fixed all the erros. Phew. That taught me a lesson. Lint from the start!
