@@ -244,4 +244,35 @@ Green.
 
 ## Realising I made a mistake
 
-Currently my program expects the user to enter the date, that is a mistake, and now I need to refactor my code and tests to take account for this.
+Currently my program assumes the user will enter the date, I believe this was a mistake, and now I need to refactor my code and tests to take account for this, so that the date is added automatically.
+
+I began by refactoring my tests. I now had to mock the dates in the test as such:
+```ruby
+    time1 = Time.new(2012, 1, 10, 12)
+    time2 = Time.new(2012, 1, 13, 12)
+
+    allow(Time).to receive(:now).and_return(time1)
+    subject.deposit(1000)
+
+    allow(Time).to receive(:now).and_return(time2)
+    subject.deposit(1000)
+```
+
+First I refactored just my first test. Red.
+
+- Then in the ```deposit``` method I used some code that records the current date.
+```ruby
+date = Time.now
+date_refactored = date.strftime('%d/%m/%Y')
+```
+Green.
+
+Then I refactored all the other tests. Red
+
+- I had to update the ```withdraw``` method to also use the new date system.
+
+Green.
+
+
+
+
