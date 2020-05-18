@@ -40,3 +40,13 @@ From the users perspective in irb:
 date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
+For multiple deposits:
+```
+> account = Account.new
+> account.deposit(1000, "10/01/2012")
+> account.deposit(1000, "13/01/2012")
+> account.print
+date || credit || debit || balance
+13/01/2012 || 1000.00 || || 2000.00
+10/01/2012 || 1000.00 || || 1000.00
+```
