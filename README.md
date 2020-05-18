@@ -28,4 +28,15 @@ date || credit || debit || balance
 
 Objects | Messages 
 --------|--------
-Account | deposit(amount, date) <br> withdrawl(amount, date) <br> print
+Account | deposit(amount, date) <br> withdrawl(amount, date) <br> print_statement
+
+### Tests
+
+From the users perspective in irb:
+```
+> account = Account.new
+> account.deposit(1000, "10/01/2012")
+> account.print
+date || credit || debit || balance
+10/01/2012 || 1000.00 || || 1000.00
+```
