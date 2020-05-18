@@ -12,12 +12,14 @@ class Account
     set_date
     @deposits.unshift(amount)
     @dates.unshift(@date)
+    "#{amount} deposited. Balance: #{@deposits.sum}"
   end
 
   def withdraw(amount)
     set_date
     @deposits.unshift(-amount)
     @dates.unshift(@date)
+    "#{amount} withdrawn. Balance: #{@deposits.sum}"
   end
 
   def print_statement
