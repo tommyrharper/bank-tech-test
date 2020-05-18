@@ -109,6 +109,10 @@ describe Account do
     it 'does not accept a string as a parameter for deposit' do
       expect{ subject.deposit("string") }.to raise_error 'Must enter a number'
     end
+
+    it 'does not accept a string as a parameter for withdrawl' do
+      expect{ subject.withdraw("string") }.to raise_error 'Must enter a number'
+    end
   end
 
 end
