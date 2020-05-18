@@ -8,14 +8,21 @@ class Account
     @statement_end = ""
   end
 
-  def deposit(amount, date)
+  # def deposit(amount, date)
+  def deposit(amount)
+    time = Time.now
+    time_refactored = time.strftime('%d/%m/%Y')
+    date = 
     @deposits.unshift(amount)
-    @dates.unshift(date)
+    # @dates.unshift(date)
+    @dates.unshift(time_refactored)
   end
 
-  def withdraw(amount, date)
+  def withdraw(amount)
+    date = Time.now
+    date_refactored = date.strftime('%d/%m/%Y')
     @deposits.unshift(-amount)
-    @dates.unshift(date)
+    @dates.unshift(date_refactored)
   end
 
   def print_statement
