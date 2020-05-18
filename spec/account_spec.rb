@@ -105,4 +105,10 @@ describe Account do
 
   end
 
+  context 'edge cases' do
+    it 'does not accept a string as a parameter for deposit' do
+      expect{ subject.deposit("string") }.to raise_error 'Must enter a number'
+    end
+  end
+
 end
