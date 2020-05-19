@@ -105,5 +105,9 @@ describe Account do
       expect { subject.deposit(5.555) }
         .to raise_error 'Cannot enter more than two decimal points'
     end
+    it 'does not allow the user to withdraw into the negative' do
+      expect { subject.withdraw(0.01) }
+        .to raise_error 'Reached account limit'
+    end
   end
 end
