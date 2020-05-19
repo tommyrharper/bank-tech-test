@@ -6,28 +6,26 @@ class Account
 
   def initialize
     @balance = 0
-    @transactions = []
-    @statement_instance = Statement.new
+    # @transactions = []
+    @statement = Statement.new
   end
 
   def deposit(amount)
     valid_number?(amount)
     @balance += amount
-    @transactions << Transaction.new(Time.now.strftime('%d/%m/%Y'), amount, 0, @balance)
-    @statement_instance.add(@transactions.pop)
+    @statement.add(Transaction.new(Time.now.strftime('%d/%m/%Y'), amount, 0, @balance))
     "#{amount} deposited. Balance: #{@balance}"
   end
 
   def withdraw(amount)
     valid_number?(amount)
     @balance -= amount
-    @transactions << Transaction.new(Time.now.strftime('%d/%m/%Y'), 0, amount, @balance)
-    @statement_instance.add(@transactions.pop)
+    @statement.add(Transaction.new(Time.now.strftime('%d/%m/%Y'), 0, amount, @balance))
     "#{amount} withdrawn. Balance: #{@balance}"
   end
 
   def print_statement
-    puts STATEMENT_HEADER + @statement_instance.statement_end
+    puts STATEMENT_HEADER + @statement.content
   end
 
   private
