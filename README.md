@@ -4,7 +4,37 @@ This is a small REPL based banking application made in my 10th week at Makers Ac
 
 This project is intended to demonstrate I can code at a professional level of quality.
 
-- [Spec](#specification)
+    - [Notes](#notes)
+- [Bank tech test](#bank-tech-test)
+  - [Notes](#notes)
+  - [Quick Start Guide](#quick-start-guide)
+  - [Screen Preview](#screen-preview)
+    - [Testing](#testing)
+  - [Dependencies](#dependencies)
+  - [Specification](#specification)
+    - [Requirements](#requirements)
+    - [Acceptance Criteria](#acceptance-criteria)
+- [Development Journal](#development-journal)
+  - [Planning](#planning)
+    - [Domain model](#domain-model)
+    - [Tests](#tests)
+  - [User Stories](#user-stories)
+  - [Set up](#set-up)
+  - [Making an Account Class](#making-an-account-class)
+  - [Depositing and printing the statement](#depositing-and-printing-the-statement)
+  - [Withdrawing and printing the statement](#withdrawing-and-printing-the-statement)
+  - [Working with pennies](#working-with-pennies)
+  - [Realising I made a mistake](#realising-i-made-a-mistake)
+  - [Edge cases](#edge-cases)
+  - [Code coverage and linting](#code-coverage-and-linting)
+  - [Redesign](#redesign)
+    - [Domain model](#domain-model-1)
+    - [CRC Cards](#crc-cards)
+  - [Creating two new classes](#creating-two-new-classes)
+  - [Refactoring the Account class to use the new classes](#refactoring-the-account-class-to-use-the-new-classes)
+  - [Dependency Injection](#dependency-injection)
+  - [Extra edge case](#extra-edge-case)
+  - [Final notes](#final-notes)
 
 ## Notes
 
@@ -12,7 +42,7 @@ This project is intended to demonstrate I can code at a professional level of qu
  - 100% Test coverage
  - Fully rubocop linted
  - Followed strict TDD
- - 
+
 ## Quick Start Guide
 
 1. Clone this repository to your local machine.
@@ -40,6 +70,7 @@ print_statement | This method will print your account statement to the console.
 
 You will something like this in your terminal:
 
+## Screen Preview
 ![](./images/bank-tech-test-example.png)
 
 ### Testing
@@ -196,7 +227,7 @@ rspec --init
 mkdir lib
 ```
 
-## Making an account
+## Making an Account Class
 
 - [x] 1
 
