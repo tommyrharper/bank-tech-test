@@ -5,12 +5,21 @@ class Statement
   end
 
   def add(transaction)
-    date = transaction.date
-    balance = '%.2f' % transaction.balance
-    credit = transaction.credit.zero? ? '' : '%.2f' % transaction.credit + ' '
-    debit = transaction.debit.zero? ? '' : '%.2f' % transaction.debit + ' '
+    insert_row(transaction.date, transaction.balance,
+               transaction.credit, transaction.debit)
+    STATEMENT_HEADER + @statement_end
+  end
+
+  private
+
+  def insert_row(date, balance, credit, debit)
+    # '%.2f' converts numbers to 2.d.p.
+    balance = '%.2f' % balance
+    # If credit or debit is zero it is set as an empty string
+    credit = credit.zero? ? '' : '%.2f' % credit + ' '
+    debit = debit.zero? ? '' : '%.2f' % debit + ' '
+
     row = "#{date} || #{credit}|| #{debit}|| #{balance}\n"
     @statement_end.insert(0, row)
-    STATEMENT_HEADER + @statement_end
   end
 end
