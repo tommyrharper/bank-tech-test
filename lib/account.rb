@@ -4,20 +4,21 @@ require_relative 'statement'
 class Account
   STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
 
-  def initialize
+  def initialize(statement = Statement.new, transaction = Transaction)
     @balance = 0
-    @statement = Statement.new
+    @statement = statement
+    @transaction = transaction
   end
 
   def deposit(amount)
-    transaction = Transaction.new(amount, 'credit')
+    transaction = @transaction.new(amount, 'credit')
     @balance += amount
     @statement.add(transaction, @balance)
     "#{amount} deposited. Balance: #{@balance}"
   end
 
   def withdraw(amount)
-    transaction = Transaction.new(amount, 'debit')
+    transaction = @transaction.new(amount, 'debit')
     @balance -= amount
     @statement.add(transaction, @balance)
     "#{amount} withdrawn. Balance: #{@balance}"
