@@ -483,3 +483,5 @@ Then I refactored to code to make its clearer to read, by extracting an extra pr
 Next I have to refactor ```account.rb``` to use two new classes, while maintaining test coverage and maintaining dependency of all classes.
 
  - I adjusted the methods to use ```statement.rb``` and ```transaction.rb``` and it worked first time! That is the pay off from good, clear planning. Amazing!
+
+Then I refactored all the the classes to work harmoniously in the most elegant and simple way possible.
