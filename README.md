@@ -408,3 +408,46 @@ Style/FrozenStringLiteralComment:
 This threw 97 offences! of errors. That will remind me to start with rubocop next time. Lets to fix it up!
 
 I fixed all the erros. Phew. That taught me a lesson. Lint from the start!
+
+## Redesign
+
+At this point I analysed my design and realised I needed to extract some logic to some extra classes, so I created a new Domain model:
+
+### Domain model
+
+Objects | Messages
+--------|-------
+Account | deposit(amount) <br> withdraw(amount) <br> print_statment <br> @balance <br> @transactions 
+Transaction |  @credit <br> @debit <br> @date <br> @balance
+Statement | create_statement <br> STATEMENT_HEADER <br> @statement_string <br> @transactions
+
+Now the challenge will be to maintain test coverage while extracting the logic to these two new classes.
+
+### CRC Cards
+
+
+Class: Account <br> Responsibilites|   <br> Collaborators
+----------------|---------
+Knows the balance <br> Know the transactions <br> Accept deposits<br>Accept withdrawals<br>  Print the statement| Transaction <br> Statement
+
+Class: Transaction <br> Responsibilites|   <br> Collaborators
+----------------|---------
+Knows the debit/credit <br> Know the date <br> Knows the balance | 
+
+Class: Statement <br> Responsibilites|   <br> Collaborators
+----------------|---------
+Creates a statement  <br> Knows the transactions|
+
+By spending a bit more time planning I now feel confident that this will work out better.
+
+## Migrating to the new model
+
+First I created the following files:
+```shell
+touch lib/account.rb
+touch lib/transaction.rb
+touch spec/account_spec.rb
+touch spec/transaction_spec.rb
+```
+
+Then I began test driving the creation of these classes.
