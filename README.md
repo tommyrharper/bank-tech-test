@@ -4,12 +4,15 @@ This is a small REPL based banking application made in my 10th week at Makers Ac
 
 This project is intended to demonstrate I can code at a professional level of quality.
 
+- [Spec](#specification)
+
 ## Notes
 
  - Ruby version 2.7.0
  - 100% Test coverage
  - Fully rubocop linted
  - Followed strict TDD
+ - 
 ## Quick Start Guide
 
 1. Clone this repository to your local machine.
