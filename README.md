@@ -419,7 +419,7 @@ Objects | Messages
 --------|-------
 Account | deposit(amount) <br> withdraw(amount) <br> print_statment <br> @balance <br> @transactions 
 Transaction |  @credit <br> @debit <br> @date <br> @balance
-Statement | create_statement <br> STATEMENT_HEADER <br> @statement_string <br> @transactions
+Statement | add(transaction) <br> STATEMENT_HEADER <br> @statement_string <br> @transactions
 
 Now the challenge will be to maintain test coverage while extracting the logic to these two new classes.
 
@@ -451,3 +451,29 @@ touch spec/transaction_spec.rb
 ```
 
 Then I began test driving the creation of these classes.
+
+First I wrote in ```transaction_spec.rb``` a test to check that a new instantiation of a class would include a date, a credit, a debit and a balance. Red.
+
+- Then I created an initialize function with all these values and uses the ```attr_reader``` method to make them accesible.
+
+Green.
+
+Then I wrote a test in ```statement_spec.rb``` to see if it could generate a correct statement using a Transaction double. Red.
+
+- Then I hardcoded the solution.
+
+Green
+
+Next I wrote another test with another Transaction double for two deposits. Red.
+
+ - I added in a working solution that updates with each deposit.
+
+Green.
+
+Wrote a test for a withdrawl transaction in ```statement_spec```. Red.
+
+ - I had to update the add method to deal with debits.
+
+Green.
+
+Then I refactored to code to make its clearer to read.
