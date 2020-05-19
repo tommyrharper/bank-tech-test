@@ -1,7 +1,15 @@
 # Bank tech test
 
-This is a small project to practice maintaining high code quality, and using a good TDD process.
+This is a small REPL based banking application made in my 10th week at Makers Academy.
 
+This project is intended to demonstrate I can code at a professional level of quality.
+
+## Notes
+
+ - Ruby version 2.7.0
+ - 100% Test coverage
+ - Fully rubocop linted
+ - Followed strict TDD
 ## Quick Start Guide
 
 1. Clone this repository to your local machine.
@@ -54,9 +62,7 @@ This should return:
 2 files inspected, no offenses detected
 ```
 
-## Dependencies and ruby version
-
- - Ruby version - 2.7.0
+## Dependencies
 
 This project has no production dependencies, all the dependencies are ruby gems are for testing and development.
 
@@ -159,11 +165,11 @@ date || credit || debit || balance
 > So that the system is reliable,  
 > I would like it to reject false values such as strings and numbers with more than two decimal places.
 
-- [ ] 7
+- [x] 7
 
 > As a banker,  
 > So that I don't lose money,  
-> I want users to have a credit limit.
+> I don't want users to be able to go into the negative.
 
 - [x] 8
 
@@ -484,4 +490,88 @@ Next I have to refactor ```account.rb``` to use two new classes, while maintaini
 
  - I adjusted the methods to use ```statement.rb``` and ```transaction.rb``` and it worked first time! That is the pay off from good, clear planning. Amazing!
 
-Then I refactored all the the classes to work harmoniously in the most elegant and simple way possible.
+Then I refactored all the the classes to work harmoniously in the most elegant and simple way possible. I did this multiple times.
+
+## Dependency Injection
+
+Currenly all my classes are not fully independent. Lets fix that!
+
+- First I changed my initialize method in ```account.rb``` from:
+```ruby
+def initialize
+  @balance = 0
+  @statement = Statement.new
+end
+```
+To:
+```ruby
+def initialize(statement = Statement.new, transaction = Transaction)
+  @balance = 0
+  @statement = statement
+  @transaction = transaction
+end
+```
+Then I updated the following line on the  ```deposit``` and ```withdraw``` methods accordingly:
+```ruby
+transaction = Transaction.new(amount, 'credit')
+```
+To:
+```ruby
+transaction = @transaction.new(amount, 'debit')
+```
+This means in the I can now inject the class objects I like, no longer is ```account.rb``` dependent on ```transaction.rb``` and ```statement.rb```.
+
+Time to update the tests to take advantage of this!
+
+Here is how I updated my tests:
+```ruby
+date = Time.new(2012, 1, 10, 12)
+it 'accepts a deposits of 10.55 and prints the statement' do
+  allow(Time).to receive(:now).and_return(date)
+  subject.deposit(10.55)
+  expect { subject.print_statement }.to output('' \
+    "date || credit || debit || balance\n" \
+    "10/01/2012 || 10.55 || || 10.55\n").to_stdout
+end
+```
+To:
+```ruby
+it 'accepts a deposits of 10.55 and prints the statement' do
+  transaction_double = double :Transaction, new: ''
+  statement_double = double :Statement,
+                            add: '',
+                            content: "10/01/2012 || 10.55 || || 10.55\n"
+  account = Account.new(statement_double, transaction_double)
+  account.deposit(10.55)
+  expect { account.print_statement }.to output('' \
+    "date || credit || debit || balance\n" \
+    "10/01/2012 || 10.55 || || 10.55\n").to_stdout
+end
+```
+As you can see I have created doubles for the ```Transaction``` and ```Statement``` classes, this now means these tests will pass even if those components break.
+
+I then purposely broke ```transaction.rb``` and ```statment.rb``` just to check this works, the tests still pass! Fantastic, I have implemented total dependency injection, and all my classes can now be tested in isolation.
+
+## Extra edge case
+
+- [x] 7
+
+> As a banker,  
+> So that I don't lose money,  
+> I don't want users to be able to go into the negative.
+
+This edgecase wasn't set out in the user requirements, so I left it to the end and then set out to fix it once everything else was done.
+
+I wrote a test where the user withdraws money on an empty balance. Red
+
+- I added an extra check in the transaction class that doesn't allow this.
+
+Green.
+
+## Final notes
+
+I have thoroughly enjoyed this project, working on getting a small and relatively simple application to the highest quality possible. I have learnt a lot, and consolidated my knowledge of dependency injection, and learned the importance of planning properly before embarking on building any project/code.
+
+Thanks for reading,
+
+Tom
