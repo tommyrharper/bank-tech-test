@@ -4,7 +4,6 @@ This is a small REPL based banking application made in my 10th week at Makers Ac
 
 This project is intended to demonstrate I can code at a professional level of quality.
 
-    - [Notes](#notes)
 - [Bank tech test](#bank-tech-test)
   - [Notes](#notes)
   - [Quick Start Guide](#quick-start-guide)
