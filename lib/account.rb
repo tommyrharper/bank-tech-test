@@ -1,62 +1,36 @@
+require_relative 'transaction'
+require_relative 'statement'
+
 class Account
   STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
 
   def initialize
-    @dates = []
-    @deposits = []
-    @statement = ''
+    @balance = 0
+    @transactions = []
+    @statement_instance = Statement.new
   end
 
   def deposit(amount)
     valid_number?(amount)
-    set_date
-    @deposits.unshift(amount)
-    @dates.unshift(@date)
-    "#{amount} deposited. Balance: #{@deposits.sum}"
+    @balance += amount
+    @transactions << Transaction.new(Time.now.strftime('%d/%m/%Y'), amount, 0, @balance)
+    @statement_instance.add(@transactions.pop)
+    "#{amount} deposited. Balance: #{@balance}"
   end
 
   def withdraw(amount)
     valid_number?(amount)
-    set_date
-    @deposits.unshift(-amount)
-    @dates.unshift(@date)
-    "#{amount} withdrawn. Balance: #{@deposits.sum}"
+    @balance -= amount
+    @transactions << Transaction.new(Time.now.strftime('%d/%m/%Y'), 0, amount, @balance)
+    @statement_instance.add(@transactions.pop)
+    "#{amount} withdrawn. Balance: #{@balance}"
   end
 
   def print_statement
-    create_statement
-    puts STATEMENT_HEADER + @statement
+    puts STATEMENT_HEADER + @statement_instance.statement_end
   end
 
   private
-
-  def create_statement
-    balance = @deposits.sum
-    @dates.each_with_index do |date, index|
-      add_row(date, balance, index)
-      balance -= @deposits[index]
-    end
-  end
-
-  def add_row(date, balance, index)
-    # '%.2f' % formats numbers to 2 d.p.
-    credit = '%.2f' % @deposits[index]
-    debit = '%.2f' % -@deposits[index]
-    balance = '%.2f' % balance
-    @statement += if credit?(index)
-                    "#{date} || #{credit} || || #{balance}\n"
-                  else
-                    "#{date} || || #{debit} || #{balance}\n"
-                  end
-  end
-
-  def set_date
-    @date = Time.now.strftime('%d/%m/%Y')
-  end
-
-  def credit?(index)
-    @deposits[index].positive?
-  end
 
   def valid_number?(number)
     raise 'Must enter a number' unless number.is_a? Numeric
