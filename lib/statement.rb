@@ -1,27 +1,25 @@
 class Statement
   attr_reader :content
-  STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
   def initialize
     @content = ''
   end
 
   def add(transaction, balance)
     insert_row(transaction.date, balance,
-               transaction.credit, transaction.debit)
-    STATEMENT_HEADER + @content
+               transaction.amount, transaction.type)
   end
 
   private
 
-  def insert_row(date, balance, credit, debit)
+  def insert_row(date, balance, amount, type)
     # '%.2f' converts numbers to 2.d.p.
     balance = '%.2f' % balance
-    # If credit or debit is zero it is set as an empty string
-    # Else it is converted to 2.d.p. with a space at the end
-    credit = credit.zero? ? '' : '%.2f' % credit + ' '
-    debit = debit.zero? ? '' : '%.2f' % debit + ' '
-
-    row = "#{date} || #{credit}|| #{debit}|| #{balance}\n"
+    amount = '%.2f' % amount
+    row = if type == 'credit'
+            "#{date} || #{amount} || || #{balance}\n"
+          else
+            "#{date} || || #{amount} || #{balance}\n"
+          end
     @content.insert(0, row)
   end
 end
