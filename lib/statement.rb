@@ -5,8 +5,8 @@ class Statement
     @content = ''
   end
 
-  def add(transaction)
-    insert_row(transaction.date, transaction.balance,
+  def add(transaction, balance)
+    insert_row(transaction.date, balance,
                transaction.credit, transaction.debit)
     STATEMENT_HEADER + @content
   end
