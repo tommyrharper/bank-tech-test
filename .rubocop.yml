@@ -16,7 +16,9 @@ Metrics/BlockLength:
 Style/FormatString:
   Exclude:
     - lib/account.rb
+    - lib/statement.rb
 
 Style/FormatStringToken:
   Exclude:
     - lib/account.rb
+    - lib/statement.rb
