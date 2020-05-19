@@ -1,14 +1,14 @@
 class Statement
-  attr_reader :statement_end
+  attr_reader :content
   STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
   def initialize
-    @statement_end = ''
+    @content = ''
   end
 
   def add(transaction)
     insert_row(transaction.date, transaction.balance,
                transaction.credit, transaction.debit)
-    STATEMENT_HEADER + @statement_end
+    STATEMENT_HEADER + @content
   end
 
   private
@@ -22,6 +22,6 @@ class Statement
     debit = debit.zero? ? '' : '%.2f' % debit + ' '
 
     row = "#{date} || #{credit}|| #{debit}|| #{balance}\n"
-    @statement_end.insert(0, row)
+    @content.insert(0, row)
   end
 end
