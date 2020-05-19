@@ -440,7 +440,7 @@ Creates a statement  <br> Knows the transactions|
 
 By spending a bit more time planning I now feel confident that this will work out better.
 
-## Migrating to the new model
+## Creating two new classes
 
 First I created the following files:
 ```shell
@@ -476,4 +476,10 @@ Wrote a test for a withdrawl transaction in ```statement_spec```. Red.
 
 Green.
 
-Then I refactored to code to make its clearer to read.
+Then I refactored to code to make its clearer to read, by extracting an extra private method out.
+
+## Refactoring the Account class to use the new classes
+
+Next I have to refactor ```account.rb``` to use two new classes, while maintaining test coverage and maintaining dependency of all classes.
+
+ - I adjusted the methods to use ```statement.rb``` and ```transaction.rb``` and it worked first time! That is the pay off from good, clear planning. Amazing!
