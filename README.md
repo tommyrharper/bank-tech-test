@@ -67,7 +67,7 @@ deposit(amount) |  This method allows you to deposit money into the account. Use
 withdraw(amount) | This method allows you to withdraw money from the account. Use a number with up to two decimal places as the parameter.
 print_statement | This method will print your account statement to the console.
 
-You will something like this in your terminal:
+You will see something like this in your terminal:
 
 ## Screen Preview
 ![](./images/bank-tech-test-example.png)
