@@ -5,21 +5,23 @@ class Statement
   end
 
   def add(transaction, balance)
-    insert_row(transaction.date, balance,
-               transaction.amount, transaction.type)
+    convert_to_two_decimal_places(transaction, balance)
+    create_row(transaction.date, @balance, @amount, transaction.type)
+    @content.insert(0, @row)
   end
 
   private
 
-  def insert_row(date, balance, amount, type)
-    # '%.2f' converts numbers to 2.d.p.
-    balance = '%.2f' % balance
-    amount = '%.2f' % amount
-    row = if type == 'credit'
-            "#{date} || #{amount} || || #{balance}\n"
-          else
-            "#{date} || || #{amount} || #{balance}\n"
-          end
-    @content.insert(0, row)
+  def convert_to_two_decimal_places(transaction, balance)
+    @balance = '%.2f' % balance
+    @amount = '%.2f' % transaction.amount
+  end
+
+  def create_row(date, balance, amount, type)
+    @row = if type == 'credit'
+             "#{date} || #{amount} || || #{balance}\n"
+           else
+             "#{date} || || #{amount} || #{balance}\n"
+           end
   end
 end
