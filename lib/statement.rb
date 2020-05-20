@@ -13,8 +13,8 @@ class Statement
   private
 
   def convert_to_two_decimal_places(amount, balance)
-    @balance = '%.2f' % balance
     @amount = '%.2f' % amount
+    @balance = '%.2f' % balance
   end
 
   def create_row(date, balance, amount, type)
