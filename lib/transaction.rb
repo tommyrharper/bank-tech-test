@@ -17,8 +17,7 @@ class Transaction
   end
 
   def over_two_decimal_places?
-    # This counts the number of decimal places
-    decimals = @amount.to_s.split('.')[1]
-    !decimals.nil? && decimals.length > 2
+    number_of_decimals = @amount.to_s.split('.')[1]
+    !number_of_decimals.nil? && number_of_decimals.length > 2
   end
 end
