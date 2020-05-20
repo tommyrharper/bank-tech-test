@@ -13,7 +13,7 @@ describe Account do
         "date || credit || debit || balance\n" \
         "10/01/2012 || 10.55 || || 10.55\n").to_stdout
     end
-    it 'accepts a deposit of 1000 with a date and prints the statement' do
+    it 'accepts a deposit of 1000 and prints the statement' do
       transaction_double = double :Transaction, new: ''
       statement_double = double :Statement,
                                 add: '',
@@ -35,7 +35,7 @@ describe Account do
         "date || credit || debit || balance\n" \
         "13/01/2012 || 2000.00 || || 2000.00\n").to_stdout
     end
-    it 'accepts a two deposits and prints the statement' do
+    it 'accepts two deposits and prints the statement' do
       transaction_double = double :Transaction, new: ''
       statement_double = double :Statement,
                                 add: '',
@@ -49,7 +49,7 @@ describe Account do
         "13/01/2012 || 1.00 || || 1001.00\n" \
         "10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
-    it 'accepts a three deposits and prints the statement' do
+    it 'accepts three deposits and prints the statement' do
       transaction_double = double :Transaction, new: ''
       statement_double = double :Statement,
                                 add: '',
@@ -66,7 +66,7 @@ describe Account do
         "13/01/2012 || 1000.00 || || 2000.00\n" \
         "10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
-    it 'accepts a four deposits and prints the statement' do
+    it 'accepts four deposits and prints the statement' do
       transaction_double = double :Transaction, new: ''
       statement_double = double :Statement,
                                 add: '',
