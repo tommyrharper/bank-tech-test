@@ -33,6 +33,7 @@ This project is intended to demonstrate I can code at a professional level of qu
   - [Refactoring the Account class to use the new classes](#refactoring-the-account-class-to-use-the-new-classes)
   - [Dependency Injection](#dependency-injection)
   - [Extra edge case](#extra-edge-case)
+  - [How and why my code is structured this way.](#how-and-why-my-code-is-structured-this-way)
   - [Final notes](#final-notes)
 
 ## Notes
@@ -600,6 +601,16 @@ I wrote a test where the user withdraws money on an empty balance. Red
 - I added an extra check in the transaction class that doesn't allow this.
 
 Green.
+
+## How and why my code is structured this way.
+
+I decided to split my code into three separate classes as I believe these each represent the three core elements of the program. 
+
+1. You have an account that starts with a balance of 0, which updates with each transaction.
+2. You have a transaction class, for each new transaction made.
+3. You have a statement class, which each trasaction is added to to make a full statement.
+
+I believe this is easy to understand and intuitive, and replicates largely how we think of a bank account in day to day life. This makes the code easily readable and adjustable. It follows basic OOP principles like the SRP.
 
 ## Final notes
 
