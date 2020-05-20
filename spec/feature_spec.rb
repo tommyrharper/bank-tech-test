@@ -14,7 +14,7 @@ describe Account do
         "date || credit || debit || balance\n" \
         "10/01/2012 || 10.55 || || 10.55\n").to_stdout
     end
-    it 'accepts a deposit of 1000 with a date and prints the statement' do
+    it 'accepts a deposit of 1000 and prints the statement' do
       allow(Time).to receive(:now).and_return(date1)
       subject.deposit(1000)
       expect { subject.print_statement }.to output('' \
@@ -28,7 +28,7 @@ describe Account do
         "date || credit || debit || balance\n" \
         "13/01/2012 || 2000.00 || || 2000.00\n").to_stdout
     end
-    it 'accepts a two deposits of 1000 and prints the statement' do
+    it 'accepts two deposits of 1000 and prints the statement' do
       allow(Time).to receive(:now).and_return(date1)
       subject.deposit(1000)
       allow(Time).to receive(:now).and_return(date2)
@@ -38,7 +38,7 @@ describe Account do
         "13/01/2012 || 1000.00 || || 2000.00\n" \
         "10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
-    it 'accepts a three deposits of 1000 and prints the statement' do
+    it 'accepts three deposits of 1000 and prints the statement' do
       allow(Time).to receive(:now).and_return(date1)
       subject.deposit(1000)
       allow(Time).to receive(:now).and_return(date2)
@@ -51,7 +51,7 @@ describe Account do
         "13/01/2012 || 1000.00 || || 2000.00\n" \
         "10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
-    it 'accepts a four deposits of 1000 and prints the statement' do
+    it 'accepts four deposits of 1000 and prints the statement' do
       allow(Time).to receive(:now).and_return(date1)
       subject.deposit(1000)
       allow(Time).to receive(:now).and_return(date2)
