@@ -18,10 +18,7 @@ class Statement
   end
 
   def create_row(date, balance, amount, type)
-    @row = if type == 'credit'
-             "#{date} || #{amount} || || #{balance}\n"
-           else
-             "#{date} || || #{amount} || #{balance}\n"
-           end
+    @row = "#{date} || #{amount} || || #{balance}\n" if type == 'credit'
+    @row = "#{date} || || #{amount} || #{balance}\n" if type == 'debit'
   end
 end
