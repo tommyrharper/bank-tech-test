@@ -3,7 +3,7 @@ require 'account'
 describe Account do
   context 'deposits' do
     it 'accepts a deposit and returns the amount and balance' do
-      transaction_double = double(:Transaction, new: '')
+      transaction_double = double(:Transaction, new: '', balance: 0)
       statement_double = double(:Statement, add: '')
       account = Account.new(statement_double, transaction_double)
 
@@ -30,6 +30,7 @@ describe Account do
     statement_double = double(
       :Statement,
       update: '',
+      balance: 0,
       print_statement: nil
     )
     account = Account.new(statement_double, transaction_double)
