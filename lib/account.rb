@@ -24,7 +24,7 @@ class Account
   end
 
   def print_statement
-    @statement.add(@transaction_list)
+    @statement.update(@transaction_list)
     @statement.print_statement
   end
 end
