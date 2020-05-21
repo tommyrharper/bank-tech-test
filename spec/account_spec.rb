@@ -29,7 +29,7 @@ describe Account do
     transaction_double = double(:Transaction, new: '')
     statement_double = double(
       :Statement,
-      add: '',
+      update: '',
       print_statement: nil
     )
     account = Account.new(statement_double, transaction_double)
