@@ -23,3 +23,7 @@ Style/FormatStringToken:
   Exclude:
     - lib/account.rb
     - lib/statement.rb
+
+Style/NegatedIf:
+  Exclude:
+    - lib/transaction.rb
