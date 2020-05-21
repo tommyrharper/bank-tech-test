@@ -2,8 +2,6 @@ require_relative 'transaction'
 require_relative 'statement'
 
 class Account
-  STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
-
   def initialize(statement = Statement.new, transaction = Transaction)
     @balance = 0
     @statement = statement
@@ -25,6 +23,6 @@ class Account
   end
 
   def print_statement
-    puts STATEMENT_HEADER + @statement.content
+    puts @statement.header + @statement.content
   end
 end
