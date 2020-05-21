@@ -6,12 +6,16 @@ describe Statement do
       :Transaction,
       date: '10/01/2012',
       amount: 1000,
-      type: 'credit'
+      type: 'credit',
+      balance: 1000
     )
+
+    transactions = [transaction_double]
+    subject.add(transactions)
 
     expected_output = "10/01/2012 || 1000.00 || || 1000.00\n"
 
-    expect(subject.add(transaction_double, 1000)).to eq expected_output
+    expect(subject.content).to eq expected_output
   end
 
   it 'creates an accurate statement with one deposit, one withdrawal' do
@@ -19,20 +23,23 @@ describe Statement do
       :Transaction,
       date: '10/01/2012',
       amount: 1000,
-      type: 'credit'
+      type: 'credit',
+      balance: 1000
     )
-    transaction_double2 = double(
+    transaction_double_two = double(
       :Transaction,
       date: '13/01/2012',
       amount: 500,
-      type: 'debit'
+      type: 'debit',
+      balance: 500
     )
 
-    subject.add(transaction_double, 1000)
+    transactions = [transaction_double, transaction_double_two]
+    subject.add(transactions)
 
     expected_output = "13/01/2012 || || 500.00 || 500.00\n" \
                       "10/01/2012 || 1000.00 || || 1000.00\n"
 
-    expect(subject.add(transaction_double2, 500)).to eq expected_output
+    expect(subject.content).to eq expected_output
   end
 end
