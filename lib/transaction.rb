@@ -1,14 +1,19 @@
 class Transaction
-  attr_reader :date, :amount, :type
+  attr_reader :date, :amount, :type, :balance
 
   def initialize(amount, type, balance)
     @date = Time.now.strftime('%d/%m/%Y')
     @type = type
     @amount = amount
     valid_number?(balance)
+    @balance = calculate_balance(balance)
   end
 
   private
+
+  def calculate_balance(balance)
+    @type == 'credit' ? balance + amount : balance - amount
+  end
 
   def valid_number?(balance)
     raise 'Must enter a number' unless @amount.is_a? Numeric
