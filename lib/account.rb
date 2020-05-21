@@ -2,21 +2,21 @@ require_relative 'transaction'
 require_relative 'statement'
 
 class Account
-  def initialize(statement = Statement.new, transaction = Transaction)
+  def initialize(statement = Statement.new, transaction_class = Transaction)
     @balance = 0
     @statement = statement
-    @transaction = transaction
+    @transaction_class = transaction_class
   end
 
   def deposit(amount)
-    transaction = @transaction.new(amount, 'credit', @balance)
+    transaction = @transaction_class.new(amount, 'credit', @balance)
     @balance += amount
     @statement.add(transaction, @balance)
     "#{amount} deposited. Balance: #{@balance}"
   end
 
   def withdraw(amount)
-    transaction = @transaction.new(amount, 'debit', @balance)
+    transaction = @transaction_class.new(amount, 'debit', @balance)
     @balance -= amount
     @statement.add(transaction, @balance)
     "#{amount} withdrawn. Balance: #{@balance}"
