@@ -7,6 +7,10 @@ class Statement
     @content = ''
   end
 
+  def print_statement
+    puts STATEMENT_HEADER + @content
+  end
+
   def add(transactions)
     transactions.each do |transaction|
       convert_to_two_decimal_places(transaction.amount, transaction.balance)
