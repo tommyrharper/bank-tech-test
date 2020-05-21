@@ -5,8 +5,8 @@ describe Account do
     it 'accepts a deposit and returns the amount and balance' do
       transaction_double = double(:Transaction, new: '')
       statement_double = double(:Statement, add: '')
-
       account = Account.new(statement_double, transaction_double)
+
       account.deposit(1000)
 
       expect(account.deposit(1000)).to eq '1000 deposited. Balance: 2000'
@@ -17,8 +17,8 @@ describe Account do
     it 'accepts a deposit and returns the amount and balance' do
       transaction_double = double(:Transaction, new: '')
       statement_double = double(:Statement, add: '')
-
       account = Account.new(statement_double, transaction_double)
+
       account.deposit(1000)
 
       expect(account.withdraw(500)).to eq '500 withdrawn. Balance: 500'
@@ -34,8 +34,8 @@ describe Account do
         content: "10/01/2012 || 10.55 || || 10.55\n",
         header: "date || credit || debit || balance\n"
       )
-
       account = Account.new(statement_double, transaction_double)
+
       account.deposit(10.55)
 
       expected_output = "date || credit || debit || balance\n" \
@@ -54,8 +54,8 @@ describe Account do
                  "10/01/2012 || 1000.00 || || 1000.00\n",
         header: "date || credit || debit || balance\n"
       )
-
       account = Account.new(statement_double, transaction_double)
+
       account.deposit(1000)
       account.withdraw(500)
 
