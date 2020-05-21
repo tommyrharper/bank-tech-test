@@ -10,8 +10,8 @@ describe Statement do
       balance: 1000
     )
 
-    transactions = [transaction_double]
-    subject.add(transactions)
+    transaction_list = [transaction_double]
+    subject.update(transaction_list)
 
     expected_output = "10/01/2012 || 1000.00 || || 1000.00\n"
 
@@ -34,8 +34,8 @@ describe Statement do
       balance: 500
     )
 
-    transactions = [transaction_double, transaction_double_two]
-    subject.add(transactions)
+    transaction_list = [transaction_double, transaction_double_two]
+    subject.update(transaction_list)
 
     expected_output = "13/01/2012 || || 500.00 || 500.00\n" \
                       "10/01/2012 || 1000.00 || || 1000.00\n"
