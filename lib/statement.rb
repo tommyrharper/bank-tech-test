@@ -11,7 +11,7 @@ class Statement
     puts STATEMENT_HEADER + @content
   end
 
-  def add(transactions)
+  def update(transactions)
     transactions.each do |transaction|
       convert_to_two_decimal_places(transaction.amount, transaction.balance)
       create_row(transaction.date, @balance, @amount, transaction.type)
