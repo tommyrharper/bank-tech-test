@@ -25,6 +25,6 @@ class Account
 
   def print_statement
     @statement.add(@transaction_list)
-    puts @statement.header + @statement.content
+    @statement.print_statement
   end
 end
