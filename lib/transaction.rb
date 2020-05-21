@@ -5,18 +5,19 @@ class Transaction
     @date = Time.now.strftime('%d/%m/%Y')
     @type = type
     @amount = amount
-    run_checks(balance)
+    process_transaction(balance)
   end
 
   private
 
-  def run_checks(balance)
+  def process_transaction(balance)
     valid_number?(balance)
-    @balance = calculate_balance(balance)
+    update_balance(balance)
   end
 
-  def calculate_balance(balance)
-    @type == 'credit' ? balance + amount : balance - amount
+  def update_balance(balance)
+    @balance = balance + amount if @type == 'credit'
+    @balance = balance - amount if @type == 'debit'
   end
 
   def valid_number?(balance)
