@@ -1,6 +1,9 @@
 class Statement
-  attr_reader :content
+  STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
+  attr_reader :content, :header
+
   def initialize
+    @header = STATEMENT_HEADER
     @content = ''
   end
 
