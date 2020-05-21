@@ -37,7 +37,7 @@ describe Transaction do
 
     it 'does not accept a number with 3 d.p. as a parameter for amount' do
       expect { Transaction.new(5.555, 'credit', 0) }
-        .to raise_error 'Cannot enter more than two decimal points'
+        .to raise_error 'Entered more than two decimal places'
     end
 
     it 'does not allow the user to withdraw into the negative' do
