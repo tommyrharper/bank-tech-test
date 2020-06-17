@@ -20,6 +20,7 @@
   - [Refactoring the Account class to use the new classes](#refactoring-the-account-class-to-use-the-new-classes)
   - [Dependency Injection](#dependency-injection)
   - [Extra edge case](#extra-edge-case)
+  - [Continuous Integration](#continuous-integration)
   - [How and why my code is structured this way.](#how-and-why-my-code-is-structured-this-way)
   - [Final notes](#final-notes)
 
@@ -497,6 +498,21 @@ I wrote a test where the user withdraws money on an empty balance. Red
 - I added an extra check in the transaction class that doesn't allow this.
 
 Green.
+
+## Continuous Integration
+
+I decided to use Travis-CI to implement continuous integration.
+
+To do this I created ```.travis.yml``` and added the following code:
+
+```yml
+language: ruby
+rvm:
+  - 2.6.5
+
+script:
+  - bundle exec rspec
+```
 
 ## How and why my code is structured this way.
 
