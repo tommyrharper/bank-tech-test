@@ -65,6 +65,8 @@ You will see something like this in your terminal:
 ## Screen Preview
 ![](./images/bank-tech-test-example.png)
 
+![](./images/bank-tech-test-demo.gif)
+
 ### Testing
 
 To run the tests and check everything is working run:
