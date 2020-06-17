@@ -10,6 +10,7 @@ class Statement
   def print_statement
     puts STATEMENT_HEADER + @content
     @content = ''
+    'Statement Printed.'
   end
 
   def update(transactions)
