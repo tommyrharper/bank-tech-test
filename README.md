@@ -1,4 +1,5 @@
 <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="">
+
 # Bank tech test
 
 This is a small REPL based banking application made in my 10th week at Makers Academy.
