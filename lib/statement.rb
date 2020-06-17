@@ -9,6 +9,7 @@ class Statement
 
   def print_statement
     puts STATEMENT_HEADER + @content
+    @content = ''
   end
 
   def update(transactions)
