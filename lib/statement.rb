@@ -1,13 +1,24 @@
 class Statement
-  attr_reader :content
+  STATEMENT_HEADER = "date || credit || debit || balance\n".freeze
+  attr_reader :content, :header
+
   def initialize
+    @header = STATEMENT_HEADER
     @content = ''
   end
 
-  def add(transaction, balance)
-    convert_to_two_decimal_places(transaction.amount, balance)
-    create_row(transaction.date, @balance, @amount, transaction.type)
-    @content.insert(0, @row)
+  def print_statement
+    puts STATEMENT_HEADER + @content
+    @content = ''
+    'Statement Printed.'
+  end
+
+  def update(transactions)
+    transactions.each do |transaction|
+      convert_to_two_decimal_places(transaction.amount, transaction.balance)
+      create_row(transaction.date, @balance, @amount, transaction.type)
+      @content.insert(0, @row)
+    end
   end
 
   private

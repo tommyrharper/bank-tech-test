@@ -1,19 +1,29 @@
 class Transaction
-  attr_reader :date, :amount, :type
+  attr_reader :date, :amount, :type, :balance
+
   def initialize(amount, type, balance)
     @date = Time.now.strftime('%d/%m/%Y')
     @type = type
     @amount = amount
-    valid_number?(balance)
+    process_transaction(balance)
   end
 
   private
 
+  def process_transaction(balance)
+    valid_number?(balance)
+    update_balance(balance)
+  end
+
+  def update_balance(balance)
+    @balance = balance + amount if @type == 'credit'
+    @balance = balance - amount if @type == 'debit'
+  end
+
   def valid_number?(balance)
-    raise 'Must enter a number' unless @amount.is_a? Numeric
+    raise 'Must enter a number' if !@amount.is_a? Numeric
     raise 'Reached account limit' if @type == 'debit' && @amount > balance
-    raise 'Cannot enter more than two decimal points' if
-    over_two_decimal_places?
+    raise 'Entered more than two decimal places' if over_two_decimal_places?
   end
 
   def over_two_decimal_places?

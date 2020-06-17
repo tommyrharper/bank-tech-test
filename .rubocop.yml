@@ -1,4 +1,7 @@
-Documentation:
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
@@ -8,6 +11,8 @@ Metrics/BlockLength:
   Exclude: 
     - spec/account_spec.rb
     - spec/feature_spec.rb
+    - spec/transaction_spec.rb
+    - spec/statement_spec.rb
 
 Style/FormatString:
   Exclude:
@@ -18,3 +23,7 @@ Style/FormatStringToken:
   Exclude:
     - lib/account.rb
     - lib/statement.rb
+
+Style/NegatedIf:
+  Exclude:
+    - lib/transaction.rb
