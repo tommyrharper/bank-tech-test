@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/tommyrharper/bank-tech-test.svg?branch=master)](https://travis-ci.com/tommyrharper/bank-tech-test)
+
 <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="">
 <img src="https://img.shields.io/badge/RuboCop-No%20Offences-brightgreen
 " alt="">
