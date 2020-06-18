@@ -131,7 +131,7 @@ date || credit || debit || balance
 - [x] 1
 
 > As a user,  
-> So that I can acces banking serviecs,  
+> So that I can acces banking services,  
 > I would like to be able to make an account.
 
 - [x] 2
